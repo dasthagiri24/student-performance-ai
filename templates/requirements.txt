@@ -1,2 +1,0 @@
-flask
-xhtml2pdf
