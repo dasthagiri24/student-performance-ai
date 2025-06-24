@@ -1,0 +1,40 @@
+
+{% extends 'layout.html' %}
+{% block content %}
+<h1>Dashboard</h1>
+<div class="cards">
+  <div class="card">Total Students: {{ total_students }}</div>
+  <div class="card">Average Attendance: {{ avg_attendance }}%</div>
+  <div class="card">Average Score: {{ avg_score }}</div>
+  <div class="card">At Risk: {{ risk_count }}</div>
+</div>
+<div class="charts">
+  <canvas id="donutChart"></canvas>
+  <canvas id="barChart"></canvas>
+</div>
+<script>
+const donutCtx = document.getElementById('donutChart');
+new Chart(donutCtx, {
+    type: 'doughnut',
+    data: {
+        labels: ['High Risk', 'Medium Risk', 'Low Risk'],
+        datasets: [{
+            data: {{ donut_data|tojson }},
+            backgroundColor: ['#ef4444', '#facc15', '#10b981']
+        }]
+    }
+});
+const barCtx = document.getElementById('barChart');
+new Chart(barCtx, {
+    type: 'bar',
+    data: {
+        labels: {{ subjects|tojson }},
+        datasets: [{
+            label: 'Average Score',
+            data: {{ subject_scores|tojson }},
+            backgroundColor: '#3b82f6'
+        }]
+    }
+});
+</script>
+{% endblock %}

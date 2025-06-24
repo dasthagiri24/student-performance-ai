@@ -1,0 +1,17 @@
+
+{% extends 'layout.html' %}
+{% block content %}
+<h1>Student Management</h1>
+<table>
+    <tr><th>Name</th><th>Score</th><th>Attendance</th><th>Risk</th><th>AI Tip</th></tr>
+    {% for s in students %}
+    <tr>
+        <td>{{ s.name }}</td>
+        <td>{{ s.score }}</td>
+        <td>{{ s.attendance }}%</td>
+        <td>{{ s.risk }}</td>
+        <td>{{ s.tip }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
