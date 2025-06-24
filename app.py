@@ -50,5 +50,9 @@ def students():
 
     return render_template('students.html', students=student_data)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+import os
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 10000))  # Render sets this env variable
+    app.run(host="0.0.0.0", port=port)
+
